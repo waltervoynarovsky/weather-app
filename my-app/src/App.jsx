@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.scss";
 import Display from "./components/Display/Display";
 import SearchBox from "./components/SearchBox/SearchBox";
@@ -6,6 +5,7 @@ import React, { useState, useEffect } from "react";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [location, setLocation] = useState("London");
   const [city, setCity] = useState({
     location: {
       name: null,
@@ -19,32 +19,29 @@ function App() {
       },
     },
   });
-  const getCity = async (location) => {
-    let url = `http://api.weatherapi.com/v1/current.json?key=33ec813df3124dbc948161134230803&q=London&aqi=yes`;
-    if (searchTerm) {
-      url = `http://api.weatherapi.com/v1/current.json?key=33ec813df3124dbc948161134230803&q=${location}&aqi=yes`;
-    }
+  const getCity = async () => {
+    let url = `http://api.weatherapi.com/v1/current.json?key=33ec813df3124dbc948161134230803&q=${location}&aqi=yes`;
     const response = await fetch(url);
     const cityData = await response.json();
     setCity(cityData);
   };
 
   const handleInput = (event) => {
-    const cleanInput = event.target.value;
-    setSearchTerm(cleanInput);
-    console.log(handleInput);
+    const input = event.target.value;
+    setSearchTerm(input);
+    console.log(input);
   };
 
-  // const handleSubmit = (event) => {
-  //   // event.preventDefault();
-  //   const cleanInput = event.target.value;
-  //   console.log(cleanInput);
-  //   setSearchTerm(cleanInput);
-  // };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(location);
+    setLocation(searchTerm);
+    setSearchTerm(" ");
+  };
 
   useEffect(() => {
-    getCity(searchTerm);
-  }, []);
+    getCity();
+  }, [location]);
 
   return (
     <div className="app">
@@ -52,7 +49,7 @@ function App() {
         <SearchBox
           handleInput={handleInput}
           searchTerm={searchTerm}
-          // onSubmit={handleSubmit}
+          handleSubmit={handleSubmit}
         />
       </div>
       <div className="display">

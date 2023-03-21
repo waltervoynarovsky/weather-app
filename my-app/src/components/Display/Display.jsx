@@ -8,14 +8,10 @@ const Display = (props) => {
       <h1>Weather in {city.location.name}</h1>
       <p>Temperature: {city.current.temp_c} &#8451;</p>
       <p>{city.current.condition.text}</p>
+      <img className="Main__icon" src={city.current.condition.icon} />
+      <p>{city.location.localtime}</p>
     </div>
   );
 };
-// return (
-//   <div>
-//     <div className="weather-card">{cityCard}</div>
-//   </div>
-// );
-// };
 
 export default Display;

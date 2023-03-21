@@ -1,10 +1,10 @@
 import "./SearchBox.scss";
 
 const SearchBox = (props) => {
-  const { handleInput, searchTerm } = props;
+  const { handleInput, searchTerm, handleSubmit } = props;
 
   return (
-    <form className="search-box">
+    <form className="search-box" onSubmit={handleSubmit}>
       <p>Search city:</p>
       <input
         type="text"
@@ -12,7 +12,9 @@ const SearchBox = (props) => {
         value={searchTerm}
         onInput={handleInput}
         className="search-box__input"
+        onSubmit={handleSubmit}
       />
+      <button onSubmit={handleSubmit}>Search</button>
     </form>
   );
 };
