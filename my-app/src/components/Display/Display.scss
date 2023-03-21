@@ -1,0 +1,16 @@
+@use "../../assets/sass/variables" as *;
+
+.weather-card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  margin: 1rem;
+  padding: 1rem;
+  text-align: right;
+  max-width: 15rem;
+}
+
+h1 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
